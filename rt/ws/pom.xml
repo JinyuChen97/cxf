@@ -32,6 +32,7 @@
     <modules>
         <module>policy</module>
         <module>addr</module>
+        <module>security-base</module>
         <module>security</module>
         <module>rm</module>
         <module>mex</module>

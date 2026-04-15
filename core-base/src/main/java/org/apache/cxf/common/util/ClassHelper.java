@@ -81,7 +81,8 @@ public class ClassHelper {
         }
         if (useSpring) {
             try {
-                return new SpringClassUnwrapper();
+                Class<?> cls = Class.forName("org.apache.cxf.common.util.SpringClassUnwrapper");
+                return (ClassUnwrapper) cls.getDeclaredConstructor().newInstance();
             } catch (Throwable ex) {
                 // ignore
             }

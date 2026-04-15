@@ -21,7 +21,7 @@
 
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
     <system systemId="http://cxf.apache.org/schemas/configuration/parameterized-types.xsd"
-            uri="../../../../../../../core/src/main/resources/schemas/configuration/parameterized-types.xsd"/>
+            uri="../../../../../../../core-base/src/main/resources/schemas/configuration/parameterized-types.xsd"/>
     <system systemId="http://cxf.apache.org/schemas/configuration/security.xsd"
-            uri="../../../../../../../core/src/main/resources/schemas/configuration/security.xsd"/>
+            uri="../../../../../../../core-base/src/main/resources/schemas/configuration/security.xsd"/>
 </catalog>

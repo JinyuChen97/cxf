@@ -68,64 +68,9 @@
     </properties>
     <dependencies>
         <dependency>
-            <groupId>jakarta.annotation</groupId>
-            <artifactId>jakarta.annotation-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.xml.ws</groupId>
-            <artifactId>jakarta.xml.ws-api</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-subclass</artifactId>
-            <version>${cxf.mockito.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.validation</groupId>
-            <artifactId>jakarta.validation-api</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>${cxf.asm.groupId}</groupId>
-            <artifactId>${cxf.asm.artifactId}</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>xml-resolver</groupId>
-            <artifactId>xml-resolver</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.glassfish.jaxb</groupId>
-            <artifactId>jaxb-runtime</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-jdk14</artifactId>
-            <optional>true</optional>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jcl-over-slf4j</artifactId>
-            <optional>true</optional>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.woodstox</groupId>
-            <artifactId>woodstox-core</artifactId>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-core-base</artifactId>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -144,154 +89,59 @@
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>org.apache.ws.xmlschema</groupId>
-            <artifactId>xmlschema-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.eclipse.angus</groupId>
-            <artifactId>angus-activation</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.eclipse.angus</groupId>
-            <artifactId>angus-mail</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>com.sun.xml.fastinfoset</groupId>
             <artifactId>FastInfoset</artifactId>
             <optional>true</optional>
         </dependency>
+        <!-- Test dependencies -->
         <dependency>
-            <groupId>net.java.dev.msv</groupId>
-            <artifactId>msv-core</artifactId>
-            <optional>true</optional>
-            <scope>provided</scope>
+            <groupId>jakarta.xml.ws</groupId>
+            <artifactId>jakarta.xml.ws-api</artifactId>
+            <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>jakarta.xml.bind</groupId>
-            <artifactId>jakarta.xml.bind-api</artifactId>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-subclass</artifactId>
+            <version>${cxf.mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-jdk14</artifactId>
+            <optional>true</optional>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <optional>true</optional>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.sun.xml.messaging.saaj</groupId>
             <artifactId>saaj-impl</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.awaitility</groupId>
-            <artifactId>awaitility</artifactId>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
     <build>
         <plugins>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>buildnumber-maven-plugin</artifactId>
-                <version>3.3.0</version>
-                <executions>
-                    <execution>
-                        <id>create-noncanonicalrev</id>
-                        <goals>
-                            <goal>create-timestamp</goal>
-                        </goals>
-                        <configuration>
-                            <timestampFormat>'NON-CANONICAL_'yyyy-MM-dd_HH-mm_'${user.name}'</timestampFormat>
-                            <timestampPropertyName>nonCanonicalRevision</timestampPropertyName>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>create-buildnumber</id>
-                        <goals>
-                            <goal>create</goal>
-                        </goals>
-                        <configuration>
-                            <doCheck>false</doCheck>
-                            <doUpdate>false</doUpdate>
-                            <revisionOnScmFailure>${nonCanonicalRevision}</revisionOnScmFailure>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.cxf</groupId>
-                <artifactId>cxf-xjc-plugin</artifactId>
-                <version>${cxf.xjc-utils.version}</version>
-                <executions>
-                    <execution>
-                        <id>generate-sources</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>xsdtojava</goal>
-                        </goals>
-                        <configuration>
-                            <fork>${cxf.xjcplugin.forkmode}</fork>
-                            <additionalJvmArgs>${cxf.xjc.jvmArgs}</additionalJvmArgs>
-                            <extensions>
-                                <extension>org.apache.cxf.xjcplugins:cxf-xjc-javadoc:${cxf.xjc-utils.version}</extension>
-                                <extension>org.apache.cxf.xjcplugins:cxf-xjc-dv:${cxf.xjc-utils.version}</extension>
-                            </extensions>
-                            <sourceRoot>${basedir}/target/generated-sources/cxf-xjc-plugin</sourceRoot>
-                            <xsdOptions>
-                                <xsdOption>
-                                    <xsd>${basedir}/src/main/resources/schemas/wsdl/http.xsd</xsd>
-                                    <bindingFile>${basedir}/src/main/resources/schemas/wsdl/http.xjb</bindingFile>
-                                    <catalog>${basedir}/src/main/build-resources/catalog.cat</catalog>
-                                    <extensionArgs>
-                                        <extensionArg>-npa</extensionArg>
-                                        <extensionArg>-Xjavadoc</extensionArg>
-                                    </extensionArgs>
-                                </xsdOption>
-                                <xsdOption>
-                                    <xsd>${basedir}/src/main/resources/schemas/wsdl/ws-addr.xsd</xsd>
-                                    <packagename>org.apache.cxf.ws.addressing</packagename>
-                                    <extensionArgs>
-                                        <extensionArg>-Xjavadoc</extensionArg>
-                                        <extensionArg>-npa</extensionArg>
-                                        <extensionArg>-Xdv</extensionArg>
-                                    </extensionArgs>
-                                </xsdOption>
-                                <xsdOption>
-                                    <xsd>${basedir}/src/main/resources/schemas/wsdl/addressing.xsd</xsd>
-                                    <bindingFile>${basedir}/src/main/resources/schemas/wsdl/addressing.xjb</bindingFile>
-                                    <extensionArgs>
-                                        <extensionArg>-npa</extensionArg>
-                                        <extensionArg>-Xjavadoc</extensionArg>
-                                        <extensionArg>-Xdv</extensionArg>
-                                    </extensionArgs>
-                                </xsdOption>
-                                <xsdOption>
-                                    <xsd>${basedir}/src/main/resources/schemas/configuration/security.xsd</xsd>
-                                    <bindingFile>${basedir}/src/main/resources/schemas/configuration/security.xjb</bindingFile>
-                                    <catalog>${basedir}/src/main/build-resources/catalog.cat</catalog>
-                                    <extensionArgs>
-                                        <extensionArg>-npa</extensionArg>
-                                        <extensionArg>-Xdv</extensionArg>
-                                        <extensionArg>-Xjavadoc</extensionArg>
-                                    </extensionArgs>
-                                </xsdOption>
-                                <xsdOption>
-                                    <xsd>${basedir}/src/main/resources/schemas/wsdl/ws-addr-wsdl.xsd</xsd>
-                                    <bindingFile>${basedir}/src/main/resources/schemas/wsdl/ws-addr-wsdl.xjb</bindingFile>
-                                    <extension>true</extension>
-                                    <extensionArgs>
-                                        <extensionArg>-npa</extensionArg>
-                                        <extensionArg>-Xjavadoc</extensionArg>
-                                        <extensionArg>-Xdv</extensionArg>
-                                    </extensionArgs>
-                                </xsdOption>
-                                <xsdOption>
-                                    <xsd>${basedir}/src/main/resources/schemas/wsdl/addressing200403.xsd</xsd>
-                                    <bindingFile>${basedir}/src/main/resources/schemas/wsdl/addressing200403.xjb</bindingFile>
-                                    <extensionArgs>
-                                        <extensionArg>-Xjavadoc</extensionArg>
-                                        <extensionArg>-npa</extensionArg>
-                                        <extensionArg>-Xdv</extensionArg>
-                                    </extensionArgs>
-                                </xsdOption>
-                            </xsdOptions>
-                        </configuration>
-                    </execution>
-                </executions>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <configuration>
+                    <instructions>
+                        <Include-Resource>
+                            {maven-resources},
+                            @cxf-core-base-${project.version}.jar!/META-INF/cxf/bus-extensions.txt,
+                            @cxf-core-base-${project.version}.jar!/org/apache/cxf/**/Messages*.properties
+                        </Include-Resource>
+                    </instructions>
+                </configuration>
             </plugin>
         </plugins>
         <pluginManagement>

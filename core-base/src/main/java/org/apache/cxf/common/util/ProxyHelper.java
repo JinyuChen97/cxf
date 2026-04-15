@@ -36,7 +36,8 @@ public class ProxyHelper {
     static {
         ProxyHelper theHelper;
         try {
-            theHelper = new CglibProxyHelper();
+            Class<?> cls = Class.forName("org.apache.cxf.common.util.CglibProxyHelper");
+            theHelper = (ProxyHelper) cls.getDeclaredConstructor().newInstance();
         } catch (Throwable ex) {
             theHelper = new ProxyHelper();
         }

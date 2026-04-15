@@ -27,7 +27,7 @@
     <system systemId="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702/ws-securitypolicy-1.2.xsd"
             uri="../../../src/main/resources/schemas/ws-securitypolicy-1.2.xsd"/>
     <system systemId="http://www.w3.org/2006/03/addressing/ws-addr.xsd"
-            uri="../../../../../../core/src/main/resources/schemas/wsdl/ws-addr.xsd"/>
+            uri="../../../../../../core-base/src/main/resources/schemas/wsdl/ws-addr.xsd"/>
     <system systemId="http://www.w3.org/2001/xml.xsd"
             uri="../../../src/main/resources/schemas/xml.xsd"/>
     <system systemId="http://www.w3.org/TR/xmldsig-core/xmldsig-core-schema.xsd"

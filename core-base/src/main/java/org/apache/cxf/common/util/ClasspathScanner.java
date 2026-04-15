@@ -55,7 +55,8 @@ public class ClasspathScanner {
         }
         if (useSpring) {
             try {
-                return new SpringClasspathScanner();
+                Class<?> cls = Class.forName("org.apache.cxf.common.util.SpringClasspathScanner");
+                return (ClasspathScanner) cls.getDeclaredConstructor().newInstance();
             } catch (Throwable ex) {
                 // ignore
             }
